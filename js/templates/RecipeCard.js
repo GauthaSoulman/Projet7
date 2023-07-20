@@ -2,55 +2,6 @@ class RecipeCard {
     constructor(recipe) {
         this._recipe = recipe;
     }
-/* 
-    createRecipeCardV1() {
-        const $wrapper = document.createElement('article');
-        $wrapper.classList.add('card');
-        $wrapper.classList.add('border-0');
-        $wrapper.classList.add('p-2');
-        $wrapper.classList.add('overflow-hidden');
-       
-        $wrapper.style.width = "23.75rem"
-        $wrapper.style.height = "22.75rem"
-
-        const ingredients = this._recipe.ingredients.map(ingredient => `
-            <li class="list-group-item"><span class="fw-bold">${ingredient.name} ${ingredient.hasQuantity ? ': ' : ''} </span>${ingredient.quantity}</li>
-        `);
-        const ingredientsHTML = ingredients.join('');
-
-        const card = `
-                <!-- photo plat -->
-                <div class="card-img-top bg-secondary" style="height: 11.13rem;"></div>
-
-                <div class="card-body bg-primary">
-                    <div class="row pt-2 mb-2">
-                        <div class="col-8">
-                            <h2 class="card-title fs-18 fw-light">${this._recipe.name}</h2>
-                        </div>
-
-                        <div class="col ps-0 text-end">
-                            <i class=" fa-regular fa-clock"></i>
-                            <p class="fw-bold d-inline-block m-0">${this._recipe.time}min</p>
-                        </div>
-                    </div>
-
-                    <div class="row fs-12">
-                        <div class="col">
-                            <ul class="list-unstyle p-0">
-                                ${ingredientsHTML}
-                            </ul>
-                        </div>
-
-                        <div class="col text-truncate-container">
-                                <p class="text-truncate m-0">${this._recipe.description}</p>
-                        </div>
-                    </div>
-                </div>
-        `
-
-        $wrapper.innerHTML = card;
-        return $wrapper;
-    } */
 
     createRecipeCard() {
         const $wrapper = document.createElement('article');

@@ -13,14 +13,7 @@ class FilterTemplate {
 
         return $wrapper
     }
-/* 
-    createFilterV1() {
-        const $wrapper = document.createElement('p')
-        $wrapper.innerText = this._data
-        
-        return $wrapper;
-    }
- */
+
     createTagCard() {
         const $wrapper = document.createElement('div')
         $wrapper.classList.add('col')
@@ -36,24 +29,6 @@ class FilterTemplate {
         return $wrapper;
     }
 
-/*     createTagCardV1() {
-        const $wrapper = document.createElement('article')
-        $wrapper.classList.add('card')
-        $wrapper.classList.add(`bg-${this._filterType}`)
-        $wrapper.classList.add('p-2')
-        $wrapper.classList.add('border-0')
-        $wrapper.style = "height: 3rem; width: fit-content"
-
-        $wrapper.innerHTML = `
-            <div class="card-body d-flex align-items-center fw-14 p-0 justify-content-between text-white">
-                ${this._data}
-                <i class="fa-regular fw-18 fa-circle-xmark ms-3"></i>
-            </div>
-        `;
-
-        return $wrapper;
-    }
- */
     get filterType() {
         return this._filterType
     }
