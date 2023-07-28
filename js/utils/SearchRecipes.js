@@ -40,25 +40,30 @@ class SearchRecipes extends StringUtils {
         this._addFilter(filterType, filter)
         this._updateDisplayRecipes() 
     }
-  
+    // Algo 2
     // Retourne L'id corespondant avec le nom,l'ingredient ou la description de tous les recettes
     _mainSearch(searchTerm) {
-      const filteredRecipes = [...this._allRecipes.values()].filter((recipe) => {
-          const normalizedSearch = this.normalizeString(searchTerm);
-          if (
-            recipe.normalizeName.includes(normalizedSearch) ||
-            recipe.normalizeDescription.includes(normalizedSearch)
-          ) {
-            return true;
-          }
-    
-          return recipe.ingredients.some((ingredient) =>
-            ingredient.normalizeName.includes(normalizedSearch)
-          );
-        }
-      );
+      const filtredIdRecipes = []
+      const normalizedSearch = this.normalizeString(searchTerm)
+      const recipes = Array.from(this._allRecipes.values())
   
-      return filteredRecipes.map((recipe) => recipe.id);
+      for (let i = 0; i < recipes.length; i++) {
+        const recipe = recipes[i];
+  
+        if (recipe.normalizeName.includes(normalizedSearch) ||
+          recipe.normalizeDescription.includes(normalizedSearch)
+        ) {
+          filtredIdRecipes.push(recipe.id)
+        } else {
+          for (let ingredient of recipe.ingredients) {
+            if (ingredient.normalizeName.includes(normalizedSearch)) {
+              filtredIdRecipes.push(recipe.id)
+            }
+          }
+        }
+      }
+  
+      return filtredIdRecipes;
     }
   
     // Ajouter nouveau filtre a _activeFiltersIndex
