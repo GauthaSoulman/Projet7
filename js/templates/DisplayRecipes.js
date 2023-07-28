@@ -18,7 +18,7 @@ class DisplayRecipes {
         throw new Error(`recipes must be a map or an array`)
       }
   
-      // Is there any recipes to display ?
+      // Recettre a affiché?
       if (recipesCount > 0) {
         recipes.forEach(recipe => {
           const template = new RecipeCard(recipe);
@@ -38,7 +38,7 @@ class DisplayRecipes {
     }
   
 
-    // Recipes not found
+    // Recette pas trouvé
     _errorMsg() {
       const errorMsg = `
         <p class="col-12 fs-18 fw-bold text-center"> Aucun recette ne correspond à votre recherche... vous pouvez chercher « tarte aux pommes », « poisson », etc. </p>
@@ -63,7 +63,7 @@ class DisplayRecipes {
       };
     }
   
-    // display all the filters available without the ones already selected
+    // Affiche tous les filtres disponibles
     _updateFilters(recipe, filtersData, activeFilters) {
       recipe.ingredients.forEach(ingredient => {
         if (!activeFilters.has(ingredient.capitalizeName) && !filtersData.ingredients.includes(ingredient.capitalizeName)) {

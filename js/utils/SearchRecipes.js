@@ -106,23 +106,3 @@ class SearchRecipes extends StringUtils {
     }
   }
   
-  //Aurtre main recherche
-    // mainSearch(searchTerm) {
-    //     const filtredIdRecipes = []
-    //     const normalizeSearch = this._toNormalize(searchTerm)
-  
-    //     this._currentRecipes.forEach(recipe => {
-  
-    //         if (this._toNormalize(recipe.name).includes(normalizeSearch) || this._toNormalize(recipe.description).includes(normalizeSearch)) {
-    //             filtredIdRecipes.push(recipe.id)
-    //         } else {
-    //             recipe.ingredients.forEach(ingredient => {
-  
-    //                 if (this._toNormalize(ingredient.name).includes(normalizeSearch)) {
-    //                     filtredIdRecipes.push(recipe.id);
-    //                 }
-    //             })
-    //         } 
-    //     });
-    // }
-  
