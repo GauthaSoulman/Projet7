@@ -62,10 +62,14 @@ class SearchRecipes extends StringUtils {
           }
         }
       }
-  
+
       return filtredIdRecipes;
     }
   
+
+
+
+    
     // Ajouter nouveau filtre a _activeFiltersIndex
     _addFilter(filterType, filter) {
       this._activeFiltersIndex.set(filter, filterType)
