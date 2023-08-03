@@ -1,16 +1,23 @@
+/* La classe filters gere la fonctionalité du filtre 
+filterlistID :Tableau des id des category de filtre
+wrapperTagsid:Id du wrapper ou les tag seront ajouté
+searchRecipes : l'instance utilisé pour gerer la recherche des recettes
+
+ */
+
 class Filters extends StringUtils {
     constructor(filtersListId, wrapperTagsId, searchRecipes) {
         super();
-        this._filtersListId = filtersListId;
+        this._filtersListId = filtersListId;  
         this._$wrapperFiltersList = this._getWrappers();
         this._$wrapperTags = document.querySelector(`#${wrapperTagsId}`);
         this._searchRecipes = searchRecipes;
     }
-
+    //ID 
     _getWrappers() {
         return this._filtersListId.map(id => document.querySelector(`#${id}`));
     }
-
+    //Met a jour le dropdown des filtres
     update(filtersData) {
         this._$wrapperFiltersList.forEach($wrapperFilter => {
             const filterType = $wrapperFilter.id;
@@ -21,7 +28,7 @@ class Filters extends StringUtils {
             this._setupInputFilter($wrapperFilter, filtersData[filterType], filterType);
         });
     }
-
+    //Met a jour le dopdon des filtres avec l'inputs des utilisateur
     _setupInputFilter($wrapperFilter, filterData, filterTemplate) {
         const input = this._getInput($wrapperFilter);
 
@@ -35,6 +42,7 @@ class Filters extends StringUtils {
         });
     }
 
+    //Gere l'evenement du click lorsque l'utilisateur choisi un filtre
     _handleFilterClick(filterTemplate, template) {
         const tagTxt = template.textContent;
         const $wrapper = filterTemplate.createTagCard(tagTxt);
@@ -50,6 +58,7 @@ class Filters extends StringUtils {
         this._$wrapperTags.appendChild($wrapper);
     }
 
+    //Clear le dropdown du filtre et reset le dropdown
     _clearFilterAndReset(filterData, $wrapperFilter, filterType) {
         $wrapperFilter.innerHTML = "";
 
@@ -63,6 +72,7 @@ class Filters extends StringUtils {
         });
     }
 
+    //filtre et affiche les filtre qui match avec l'input de l'utilisateur
     _filterAndDisplayMatchingValues(searchValue, filterData, $wrapperFilter, filterType) {
         const matchingValues = filterData.filter(filter => {
             const normalizeSearch = this.normalizeString(searchValue);
@@ -76,12 +86,13 @@ class Filters extends StringUtils {
             $wrapperFilter.innerHTML = "Aucune valeur trouvée";
         }
     }
-
+    //Clear la zone de l'input dand le dropdown
     _clearInput($wrapperFilter) {
         const input = this._getInput($wrapperFilter)
         input.value = ""
     }
 
+    //recupere le input dans le dropdown
     _getInput($wrapperFilter) {
         return $wrapperFilter.parentElement.parentElement.querySelector('input')
     }
