@@ -1,3 +1,5 @@
+//La classe SearchRecipes gere la recherche de recette, les inputs de l'uitlisateur et les filtre active
+
 class SearchRecipes extends StringUtils {
     constructor(recipesIndex, recipes, version) {
       super()
@@ -7,7 +9,7 @@ class SearchRecipes extends StringUtils {
       this._resultMainSearch = [...this._allRecipes.keys()];
       this._version = version;
     }
-  
+    //SetupSearchInput gere le input de la recherche principale 
     setupSearchInput(searchInput, displayRecipe) {
       this._displayRecipe = displayRecipe;
   
@@ -36,12 +38,13 @@ class SearchRecipes extends StringUtils {
     }
   
     // Apelle les elements du filtre selectionner
+    //Appeler quand l'utilisateur selection un filtre dans le dropdown
     searchByFilter(filterType, filter) {
         this._addFilter(filterType, filter)
         this._updateDisplayRecipes() 
     }
  
-    // Retourne L'id corespondant avec le nom,l'ingredient ou la description de tous les recettes
+    // Fonction qui boucle sur tous les recettes pour trouver les recettes corespondant au searchTerm
     _mainSearch(searchTerm) {
       const filteredRecipes = [...this._allRecipes.values()].filter((recipe) => {
         const normalizedSearch = this.normalizeString(searchTerm);
@@ -64,16 +67,20 @@ class SearchRecipes extends StringUtils {
 
 
     
-    // Ajouter nouveau filtre a _activeFiltersIndex
+    // Ajouter nouveau filtre a _activeFiltersIndex et met a jour l'affichage des recette
     _addFilter(filterType, filter) {
       this._activeFiltersIndex.set(filter, filterType)
     }
-  
+    
+
+    //Supprimer le diltre  a activeFiltersIndex et met a jour l'affichage des recette
     removeFilter(filter) {
       this._activeFiltersIndex.delete(filter)
       this._updateDisplayRecipes()
     }
   
+
+    //Met a jour  les recettes affiché a partir de l'input et des filtres actives
     _updateDisplayRecipes() {
       const recipesFromIds = (recipesIds) => {
         return recipesIds.map((id) => this._allRecipes.get(id));
@@ -85,7 +92,7 @@ class SearchRecipes extends StringUtils {
       this._displayRecipe.render(recipesFromIds(recipesIds), this._activeFiltersIndex)
     }
   
-    // Retourne tous les id corespondant au filtre
+    // Retourne tous les id qui match  avec la recherche principale et les filtres active
     _getRecipesFiltered() {
       const idsByFilters =  this._idsByFilters()
   
