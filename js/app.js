@@ -1,3 +1,5 @@
+
+
 class App {
     constructor() {
       this.searchInput = document.querySelector('input[name="q"]');
