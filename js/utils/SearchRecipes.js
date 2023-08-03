@@ -35,7 +35,7 @@ class SearchRecipes extends StringUtils {
       })
     }
   
-    // Apelle les elements du filtre selectionner
+    // Appel les elements du filtre selectionner
     searchByFilter(filterType, filter) {
         this._addFilter(filterType, filter)
         this._updateDisplayRecipes() 
@@ -74,12 +74,12 @@ class SearchRecipes extends StringUtils {
     _addFilter(filterType, filter) {
       this._activeFiltersIndex.set(filter, filterType)
     }
-  
+    //Supprimer filtre
     removeFilter(filter) {
       this._activeFiltersIndex.delete(filter)
       this._updateDisplayRecipes()
     }
-  
+    
     _updateDisplayRecipes() {
       const recipesFromIds = (recipesIds) => {
         return recipesIds.map((id) => this._allRecipes.get(id));
@@ -87,7 +87,6 @@ class SearchRecipes extends StringUtils {
   
       const recipesIds = this._getRecipesFiltered()
   
-      this._version === 1 ? this._displayRecipe.renderV1(recipesFromIds(recipesIds), this._activeFiltersIndex) :
       this._displayRecipe.render(recipesFromIds(recipesIds), this._activeFiltersIndex)
     }
   
